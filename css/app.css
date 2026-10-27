@@ -333,11 +333,6 @@ tr:has(.play-btn.is-current) .t-title { color: var(--md-accent); }
 .login-card h1 { font-weight: 800; letter-spacing: -.03em; font-size: 2rem; }
 .login-lead { color: var(--md-muted); margin-bottom: 24px; }
 .login-note { font-size: .78rem; color: var(--md-muted); margin: 16px 0 0; }
-.login-config { margin-top: 18px; text-align: left; font-size: .8rem; color: var(--md-muted); border-top: 1px solid var(--bs-border-color); padding-top: 12px; }
-.login-config summary { cursor: pointer; }
-.login-config dl { margin: 10px 0 0; }
-.login-config dt { font-weight: 600; margin-top: 6px; }
-.login-config dd { margin: 0; overflow-wrap: anywhere; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; }

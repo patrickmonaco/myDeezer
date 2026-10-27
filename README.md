@@ -13,8 +13,7 @@ Sur <https://developers.deezer.com/myapps>, ouvrez l'application **myPlaylists2*
 - **Redirect URL after authentication** : l'URL exacte de la page, avec la barre finale
   (ex. `https://test.gpmfactory.com/mydeezer/`).
 
-L'URL de retour attendue est affichée sur l'écran de connexion, rubrique
-« Configuration de l'application Deezer ».
+L'URL de retour est l'adresse de la page elle-même (par défaut `location.origin + location.pathname`).
 
 > La **clé secrète n'est pas utilisée**. Sans serveur, l'appli emploie le flux OAuth
 > « client-side » (`response_type=token`) prévu par Deezer pour ce cas. Ne mettez jamais

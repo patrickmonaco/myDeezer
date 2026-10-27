@@ -1,6 +1,5 @@
 // myDeezer — application monopage (aucune partie serveur)
 
-import { CONFIG } from './config.js';
 import { auth, api, fetchAll, AuthError } from './deezer.js';
 import {
   $, $$, esc, toast, loadingHTML, ListView, plural, fmtNumber,
@@ -464,8 +463,6 @@ function showLogin(message, variant = 'info') {
   const box = $('#login-message');
   box.className = message ? `alert alert-${variant} small` : 'd-none';
   box.textContent = message || '';
-  $('#redirect-uri').textContent = auth.redirectUri();
-  $('#app-id').textContent = CONFIG.APP_ID;
 }
 
 function showApp() {

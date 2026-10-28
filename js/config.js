@@ -6,6 +6,11 @@
 export const CONFIG = {
   APP_ID: '376204',            // Application myPlaylists2
 
+  // Affiché dans « À propos ». Pensez à incrémenter aussi CACHE dans sw.js.
+  VERSION: '1.8.0',
+  CREATED: '2026-10-27',
+  UPDATED: '2026-10-28',
+
   // URL de retour après connexion. Elle doit correspondre au domaine / à l'URL
   // déclarés dans la configuration de l'application sur developers.deezer.com.
   // null = URL courante de l'application (ex. https://mon-site.fr/mydeezer/)

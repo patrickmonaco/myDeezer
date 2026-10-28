@@ -409,3 +409,32 @@ body.has-player #toasts { bottom: var(--player-h); }
 .play-btn.is-loading { color: var(--md-accent); border-color: var(--md-accent); }
 .spin { display: inline-block; animation: md-spin .8s linear infinite; }
 @keyframes md-spin { to { transform: rotate(360deg); } }
+
+/* ---------- À propos ---------- */
+.side-nav button.nav-link { border: 0; background: none; text-align: left; }
+.about-modal {
+  --bs-modal-bg: var(--md-surface); position: relative; overflow: hidden;
+  border: 1px solid var(--bs-border-color); border-radius: 22px;
+}
+.about-close { position: absolute; top: 14px; right: 14px; z-index: 2; }
+.about-hero {
+  text-align: center; padding: 34px 28px 24px;
+  background:
+    radial-gradient(ellipse 70% 80% at 20% 0%, rgba(124, 58, 237, .35), transparent),
+    radial-gradient(ellipse 60% 70% at 100% 100%, rgba(219, 39, 119, .22), transparent);
+  border-bottom: 1px solid var(--bs-border-color);
+}
+.about-logo { width: 72px; height: 72px; margin-bottom: 12px; }
+.about-hero h2 { font-weight: 800; letter-spacing: -.03em; margin: 0; }
+.about-hero p { color: var(--md-muted); margin: 6px 0 12px; }
+.about-version {
+  display: inline-block; padding: 2px 12px; border-radius: 999px; font-size: .8rem; font-weight: 700;
+  background: var(--md-accent-soft); color: var(--md-accent); font-variant-numeric: tabular-nums;
+}
+.about-facts { margin: 0; padding: 8px 28px; }
+.about-facts > div { display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--bs-border-color); }
+.about-facts > div:last-child { border-bottom: 0; }
+.about-facts dt { font-weight: 500; color: var(--md-muted); }
+.about-facts dd { margin: 0; font-weight: 600; text-align: right; }
+.about-note { margin: 0; padding: 14px 28px 24px; font-size: .78rem; color: var(--md-muted); text-align: center; }
+.about-facts dd a { white-space: nowrap; }

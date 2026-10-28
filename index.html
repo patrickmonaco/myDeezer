@@ -85,6 +85,7 @@
           <div class="side-label">Compte</div>
           <ul class="nav flex-column side-nav">
             <li><a class="nav-link" data-nav="profile" href="#/profile"><i class="bi bi-person-circle"></i>Mon profil</a></li>
+            <li><button class="nav-link w-100" id="about-btn" type="button"><i class="bi bi-info-circle"></i>À propos</button></li>
           </ul>
 
           <div class="side-foot">
@@ -113,6 +114,30 @@
     <a id="player-link" class="player-btn d-none d-sm-inline-flex" href="#" target="_blank" rel="noopener" title="Écouter en entier sur Deezer"
        aria-label="Écouter en entier sur Deezer"><i class="bi bi-box-arrow-up-right"></i></a>
     <button id="player-close" class="player-btn" type="button" aria-label="Fermer le lecteur"><i class="bi bi-x-lg"></i></button>
+  </div>
+
+  <!-- À propos -->
+  <div class="modal fade" id="about-modal" tabindex="-1" aria-labelledby="about-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content about-modal">
+        <button type="button" class="btn-close about-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        <div class="about-hero">
+          <img src="icons/icon.svg" alt="" class="about-logo">
+          <h2 id="about-title">myDeezer</h2>
+          <p>Votre bibliothèque Deezer, consultable, triable et exportable.</p>
+          <span class="about-version" id="about-version"></span>
+        </div>
+        <dl class="about-facts">
+          <div><dt>Version</dt><dd id="about-version-full"></dd></div>
+          <div><dt>Création</dt><dd id="about-created"></dd></div>
+          <div><dt>Dernière mise à jour</dt><dd id="about-updated"></dd></div>
+          <div><dt>Conception</dt><dd>Patrick Monaco · <a href="https://gpmfactory.com" target="_blank" rel="noopener">GPM Factory</a></dd></div>
+          <div><dt>Réalisation</dt><dd>Anthropic Claude</dd></div>
+        </dl>
+        <p class="about-note">Données fournies par l’API Deezer. myDeezer est une application indépendante,
+          sans lien avec Deezer. Aucune donnée ne transite par un serveur tiers.</p>
+      </div>
+    </div>
   </div>
 
   <!-- Fiche détaillée d'un titre -->

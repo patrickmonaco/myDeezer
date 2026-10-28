@@ -1,5 +1,6 @@
 // myDeezer — application monopage (aucune partie serveur)
 
+import { CONFIG } from './config.js';
 import { auth, api, fetchAll, AuthError } from './deezer.js';
 import {
   $, $$, esc, toast, loadingHTML, ListView, plural, fmtNumber,
@@ -502,6 +503,19 @@ function initTheme() {
   });
 }
 
+function initAbout() {
+  const long = { day: 'numeric', month: 'long', year: 'numeric' };
+  $('#about-version').textContent = `v${CONFIG.VERSION}`;
+  $('#about-version-full').textContent = CONFIG.VERSION;
+  $('#about-created').textContent = fmtDate(CONFIG.CREATED, long);
+  $('#about-updated').textContent = fmtDate(CONFIG.UPDATED, long);
+  const modal = bootstrap.Modal.getOrCreateInstance($('#about-modal'));
+  $('#about-btn').addEventListener('click', () => {
+    bootstrap.Offcanvas.getInstance($('#sidebar'))?.hide();
+    modal.show();
+  });
+}
+
 function initInstall() {
   let deferred = null;
   const btn = $('#install-btn');
@@ -522,6 +536,7 @@ function boot() {
   initTheme();
   initInstall();
   player.initPlayer();
+  initAbout();
   initTrackDetail({
     authError: (e) => logout(e.message, 'warning'),
     lookup: (id) => tracksById.get(String(id)),

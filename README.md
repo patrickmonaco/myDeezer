@@ -72,8 +72,9 @@ icons/                  icônes (SVG, 192, 512, maskable)
 vendor/                 Bootstrap + Bootstrap Icons
 ```
 
-Après une mise à jour des fichiers, incrémentez `CACHE` dans `sw.js` (`mydeezer-v2`…)
-pour que les navigateurs récupèrent la nouvelle version.
+Après une mise à jour des fichiers, incrémentez `CACHE` dans `sw.js` (`mydeezer-v8`…)
+pour que les navigateurs récupèrent la nouvelle version, et mettez à jour `VERSION` /
+`UPDATED` dans `js/config.js` (affichés dans « À propos »).
 
 ## Partage sur LinkedIn
 

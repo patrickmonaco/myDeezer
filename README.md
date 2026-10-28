@@ -72,8 +72,8 @@ pour que les navigateurs récupèrent la nouvelle version.
 
 ## Partage sur LinkedIn
 
-`index.html` contient les balises Open Graph (titre, description, image `icons/og-image.png`
-en 1200×627). LinkedIn exige des **URL absolues** : elles pointent vers
+`index.html` contient les balises Open Graph (titre, description, image `icons/og-image.jpg`
+en 2400×1254, JPEG qualité 90 sans sous-échantillonnage des couleurs). LinkedIn exige des **URL absolues** : elles pointent vers
 `https://mydeezer.gpmfactory.com/`. Si l'appli est publiée ailleurs, remplacez ce domaine
 dans les balises `og:*`, `twitter:*` et `canonical`.
 

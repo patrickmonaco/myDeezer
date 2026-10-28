@@ -69,3 +69,14 @@ vendor/                 Bootstrap + Bootstrap Icons
 
 Après une mise à jour des fichiers, incrémentez `CACHE` dans `sw.js` (`mydeezer-v2`…)
 pour que les navigateurs récupèrent la nouvelle version.
+
+## Partage sur LinkedIn
+
+`index.html` contient les balises Open Graph (titre, description, image `icons/og-image.png`
+en 1200×627). LinkedIn exige des **URL absolues** : elles pointent vers
+`https://mydeezer.gpmfactory.com/`. Si l'appli est publiée ailleurs, remplacez ce domaine
+dans les balises `og:*`, `twitter:*` et `canonical`.
+
+LinkedIn garde l'aperçu en cache : après une modification, forcez la relecture avec le
+[Post Inspector](https://www.linkedin.com/post-inspector/).
+

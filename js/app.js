@@ -457,7 +457,7 @@ function fillSidebarUser(me) {
 
 function showLogin(message, variant = 'info') {
   player.stop();
-  document.title = 'myDeezer';
+  document.title = 'myDeezer · votre bibliothèque Deezer';
   $('#app-shell').classList.add('d-none');
   $('#login-screen').classList.remove('d-none');
   const box = $('#login-message');

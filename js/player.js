@@ -44,6 +44,8 @@ export function sync() {
     const i = b.querySelector('.play-icon');
     if (i) i.className = `play-icon bi ${on ? 'bi-pause-fill' : 'bi-play-fill'}`;
     b.setAttribute('aria-label', on ? 'Mettre en pause' : 'Écouter l’extrait');
+    const label = b.querySelector('.play-label');
+    if (label && !b.disabled) label.textContent = on ? 'Pause' : 'Écouter l’extrait';
   });
   const pb = $('#player-toggle i');
   if (pb) pb.className = `bi ${playing ? 'bi-pause-fill' : 'bi-play-fill'}`;

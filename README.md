@@ -51,6 +51,10 @@ python3 -m http.server 8080
 
 Raccourci clavier : `/` place le curseur dans la recherche, `Échap` l'efface.
 
+**Fiche d'un titre** : un clic sur le titre ou la pochette ouvre une fenêtre avec le détail complet,
+issu de `/track/{id}` et `/album/{id}` (ISRC, UPC, BPM, gain, label, genres, contributeurs,
+disponibilité par pays, données brutes JSON). Le bouton rond ▶ lance l'extrait.
+
 ## Fichiers
 
 ```
@@ -60,6 +64,7 @@ js/config.js            APP_ID, permissions, tailles de page
 js/deezer.js            OAuth + API JSONP + chargement complet paginé
 js/ui.js                composant liste (recherche, pagination), utilitaires
 js/player.js            lecteur d'extraits
+js/track.js             fiche détaillée d'un titre (fenêtre modale)
 js/app.js               routeur et vues (playlists, coups de cœur, profil)
 sw.js                   service worker
 manifest.webmanifest    manifeste PWA

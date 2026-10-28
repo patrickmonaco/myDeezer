@@ -6,6 +6,7 @@ import {
   fmtDuration, fmtLongDuration, fmtDate,
 } from './ui.js';
 import * as player from './player.js';
+import { initTrackDetail, openTrack } from './track.js';
 
 const view = $('#view');
 const tracksById = new Map(); // pour retrouver un titre au clic sur « écouter »
@@ -247,22 +248,24 @@ function trackTable(slice, offset, lv) {
   const showAdded = slice.some((t) => t.time_add);
   return `<div class="table-responsive track-wrap"><table class="table table-hover align-middle mb-0 track-table">
     <thead><tr>
-      <th class="col-num">#</th><th class="col-play"></th><th${lv.ariaSort('title')}>${lv.sortHeader('title', 'Titre')}</th>
+      <th class="col-num d-none d-sm-table-cell">#</th><th class="col-play"></th><th class="col-cover"></th><th${lv.ariaSort('title')}>${lv.sortHeader('title', 'Titre')}</th>
       <th class="d-none d-md-table-cell">Album</th>
       ${showAdded ? `<th class="d-none d-lg-table-cell"${lv.ariaSort('added')}>${lv.sortHeader('added', 'Ajouté le')}</th>` : ''}
       <th class="text-end col-dur"${lv.ariaSort('duration')}>${lv.sortHeader('duration', 'Durée', '<i class="bi bi-clock"></i>')}</th><th class="col-link"></th>
     </tr></thead>
     <tbody>${slice.map((t, i) => `<tr>
-      <td class="col-num">${offset + i + 1}</td>
+      <td class="col-num d-none d-sm-table-cell">${offset + i + 1}</td>
       <td class="col-play">
         <button type="button" class="play-btn" data-play="${t.id}" ${t.preview ? '' : 'disabled title="Pas d’extrait"'}
-                aria-label="Écouter l’extrait">
-          <img src="${esc(t.album?.cover_small)}" alt="" loading="lazy">
-          <i class="play-icon bi bi-play-fill"></i>
+                aria-label="Écouter l’extrait"><i class="play-icon bi bi-play-fill"></i></button>
+      </td>
+      <td class="col-cover">
+        <button type="button" class="cover-btn" data-detail="${t.id}" aria-label="Fiche du titre ${esc(t.title)}" title="Voir la fiche du titre">
+          <img src="${esc(t.album?.cover_small)}" alt="" loading="lazy"><i class="bi bi-info-lg"></i>
         </button>
       </td>
       <td class="col-title">
-        <div class="t-title">${esc(t.title)}${t.explicit_lyrics ? ' <span class="badge-explicit" title="Contenu explicite">E</span>' : ''}</div>
+        <div class="t-title"><button type="button" class="t-open" data-detail="${t.id}" title="Voir la fiche du titre">${esc(t.title)}</button>${t.explicit_lyrics ? ' <span class="badge-explicit" title="Contenu explicite">E</span>' : ''}</div>
         <div class="t-artist">${esc(t.artist?.name)}<span class="d-md-none"> · ${esc(t.album?.title)}</span></div>
       </td>
       <td class="d-none d-md-table-cell t-album">${esc(t.album?.title)}</td>
@@ -274,6 +277,8 @@ function trackTable(slice, offset, lv) {
 }
 
 view.addEventListener('click', (e) => {
+  const d = e.target.closest('[data-detail]');
+  if (d) { openTrack(d.dataset.detail); return; }
   const b = e.target.closest('[data-play]');
   if (!b) return;
   const t = tracksById.get(b.dataset.play);
@@ -517,6 +522,10 @@ function boot() {
   initTheme();
   initInstall();
   player.initPlayer();
+  initTrackDetail({
+    authError: (e) => logout(e.message, 'warning'),
+    lookup: (id) => tracksById.get(String(id)),
+  });
 
   $('#login-btn').addEventListener('click', () => auth.login());
   $('#logout-btn').addEventListener('click', () => logout());

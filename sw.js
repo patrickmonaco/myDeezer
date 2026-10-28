@@ -1,5 +1,5 @@
 // Service worker myDeezer : met en cache l'application elle-même (pas les données Deezer)
-const CACHE = 'mydeezer-v6';
+const CACHE = 'mydeezer-v7';
 const SHELL = [
   './',
   './index.html',

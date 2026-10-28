@@ -44,7 +44,7 @@ python3 -m http.server 8080
 | Chargement | Listes chargées en entier par lots de 1000 (`index`/`limit`), puis pagination et recherche côté navigateur |
 | Quota | Erreur Deezer code 4 (50 requêtes / 5 s) : nouvel essai automatique |
 | Session expirée | Code 300 : retour à l'écran de connexion |
-| Extraits | URL `preview` (30 s). Si l'URL signée a expiré, l'appli en redemande une fraîche via `/track/{id}` |
+| Extraits | URL `preview` (30 s). Si la liste n'en fournit pas (cas fréquent des coups de cœur) ou si l'URL signée a expiré, l'appli la demande à `/track/{id}` au moment du clic |
 | Export | JSON ou CSV (séparateur `;` + BOM UTF-8, s'ouvre directement dans Excel FR). Exporte la liste complète ou le résultat de la recherche en cours |
 | PWA | `manifest.webmanifest` + `sw.js` (cache de l'application, pas des données Deezer) |
 | Dépendances | Bootstrap 5.3.8 et Bootstrap Icons embarqués dans `vendor/` (aucun CDN) |

@@ -63,6 +63,7 @@ export async function openTrack(id) {
 
     // L'extrait de /track est plus récent que celui de la liste
     if (listed && track.preview) listed.preview = track.preview;
+    else if (listed && !track.preview) listed.noPreview = true;
     el._track = listed || track;
     $('#track-modal-title').textContent = track.title_short || track.title;
     $('#track-modal-body').innerHTML = renderDetail(track, album, listed);

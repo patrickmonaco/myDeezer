@@ -1,6 +1,6 @@
 // Lecteur d'extraits (30 s) fourni par l'API Deezer
 
-import { api } from './deezer.js';
+import { api, AuthError } from './deezer.js';
 import { $, $$, esc, toast, fmtDuration } from './ui.js';
 
 const audio = new Audio();
@@ -10,12 +10,55 @@ let retried = false;
 
 const bar = () => $('#player');
 
-export function toggle(track) {
+let toggleSeq = 0;
+
+// Certaines listes (notamment /user/me/tracks) renvoient un champ preview vide :
+// on demande alors l'extrait au détail du titre, une seule fois par titre.
+async function resolvePreview(track) {
+  if (track.preview || track.noPreview) return;
+  setLoading(track.id, true);
+  try {
+    const fresh = await api(`/track/${track.id}`);
+    if (fresh?.preview) track.preview = fresh.preview;
+    else track.noPreview = true;
+  } catch (e) {
+    toast(e instanceof AuthError ? e.message : 'Impossible de récupérer l’extrait.', 'danger');
+    return;
+  } finally {
+    setLoading(track.id, false);
+  }
+}
+
+function setLoading(id, on) {
+  $$(`[data-play="${id}"]`).forEach((b) => {
+    b.classList.toggle('is-loading', on);
+    const i = b.querySelector('.play-icon');
+    if (i && on) i.className = 'play-icon bi bi-arrow-repeat spin';
+  });
+  if (!on) sync();
+}
+
+function markUnavailable(id) {
+  $$(`[data-play="${id}"]`).forEach((b) => {
+    b.disabled = true;
+    b.title = 'Pas d’extrait disponible';
+    const label = b.querySelector('.play-label');
+    if (label) label.textContent = 'Pas d’extrait';
+  });
+}
+
+export async function toggle(track) {
   if (current && current.id === track.id) {
     if (audio.paused) audio.play().catch(() => {}); else audio.pause();
     return;
   }
-  if (!track.preview) { toast('Aucun extrait disponible pour ce titre.'); return; }
+  const my = ++toggleSeq;
+  if (!track.preview) await resolvePreview(track);
+  if (my !== toggleSeq) return; // un autre titre a été demandé entre-temps
+  if (!track.preview) {
+    if (track.noPreview) { markUnavailable(track.id); toast('Aucun extrait disponible pour ce titre.'); }
+    return;
+  }
   current = track;
   retried = false;
   audio.src = track.preview;

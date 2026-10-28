@@ -256,7 +256,7 @@ function trackTable(slice, offset, lv) {
     <tbody>${slice.map((t, i) => `<tr>
       <td class="col-num d-none d-sm-table-cell">${offset + i + 1}</td>
       <td class="col-play">
-        <button type="button" class="play-btn" data-play="${t.id}" ${t.preview ? '' : 'disabled title="Pas d’extrait"'}
+        <button type="button" class="play-btn" data-play="${t.id}" ${t.noPreview || t.readable === false ? 'disabled title="Pas d’extrait"' : ''}
                 aria-label="Écouter l’extrait"><i class="play-icon bi bi-play-fill"></i></button>
       </td>
       <td class="col-cover">

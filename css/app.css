@@ -405,3 +405,7 @@ body.has-player #toasts { bottom: var(--player-h); }
 .td-raw { margin-top: 22px; font-size: .82rem; }
 .td-raw summary { color: var(--md-muted); cursor: pointer; }
 .td-raw pre { margin: 10px 0 0; max-height: 280px; overflow: auto; padding: 12px; border-radius: 10px; background: var(--bs-secondary-bg); font-size: .76rem; }
+
+.play-btn.is-loading { color: var(--md-accent); border-color: var(--md-accent); }
+.spin { display: inline-block; animation: md-spin .8s linear infinite; }
+@keyframes md-spin { to { transform: rotate(360deg); } }
